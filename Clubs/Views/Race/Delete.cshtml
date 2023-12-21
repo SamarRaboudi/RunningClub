@@ -1,0 +1,129 @@
+﻿﻿@using Clubs.Data.Enum
+@model Race
+
+<div style="  background-color: #F6F6ED";
+    background-size: cover;
+    background-position: center;">
+    <div class="album py-5">
+        <div class="container">
+<form method="post" asp-action="Delete" enctype="multipart/form-data" class="form">
+    <h4 class="warning">Are you sure you want to delete this race?</h4>
+    <input type="hidden" value="AddressId" id="AddressId" />
+     <div class="p-3 mt-4">
+                <div class="row pb-2">
+                    <input type="hidden" value="AddressId" id="AddressId" />
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Title">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="image-div mb-3">
+                        <label asp-for="Image" class="form-label">Image</label>
+                        <div class="image-container">
+                            <img id="previewImage" src="" alt="Selected Image" />
+                        </div>
+                        <div class="image-file">
+                            
+                            <input asp-for="Image" type="file" class="form-control" placeholder="Image" onchange="previewFile()">
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RaceCategory" class="form-label">Race Category</label>
+                        <select asp-for="RaceCategory" asp-items="@Html.GetEnumSelectList<RaceCategory>()" class="form-select">
+                            <option selected="selected" value="">--Select--</option>
+                        </select>
+                        <span asp-validation-for="RaceCategory" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address.Street" class="form-label">Street</label>
+                        <input asp-for="Address.Street" class="form-control" placeholder="Street">
+                        <span asp-validation-for="Address.Street" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address.City" class="form-label">City</label>
+                        <input asp-for="Address.City" class="form-control" placeholder="City">
+                        <span asp-validation-for="Address.Street" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address.State" class="form-label">State</label>
+                        <input asp-for="Address.State" class="form-control" placeholder="State">
+                        <span asp-validation-for="Address.State" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+    </form>
+    <div class="form-group">
+        <form action="Delete" method="post" class="btn_form">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Confirm" class="btn btn-danger float-right mt-3" />
+        </form>
+     </div>
+        </div>
+  </div>
+</div>
+
+ <style>
+         .warning{
+             color:#B84743;
+             padding:20px 20px 0;
+         }
+       .form {
+            background-color: #fff; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px; 
+            max-width:900px;
+            margin:0 auto;
+        }
+
+      .form .form-label {
+            color: #333; 
+            font-size: 16px; 
+            font-weight:bold;
+        }
+
+      .form .form-control {
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            padding: 8px; 
+            margin-bottom: 10px; 
+        }
+
+        #previewImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .image-div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .image-container {
+            width: 200px;
+            height: auto;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-file {
+            display: flex;
+            flex-direction: column;
+        }
+         .btn_form{
+            text-align:center;
+        }
+</style>

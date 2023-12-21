@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Clubs</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Clubs.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Bootswatch.css">
+    <link rel="stylesheet" href="~/css/Styles.css">
+    <link href="https://fonts.cdnfonts.com/css/athletic" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
+                
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-title">
+    <img src="~/images/run-logo.png" alt="RunningClub Logo" height="40" />RUNGROUP</a>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+         <li class="nav-item ">
+          <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+      @*  <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="club" asp-action="Index">Clubs</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" asp-area="" asp-controller="club" asp-action="Index">All Clubs</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </li>*@
+         <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Club" asp-action="Index">Clubs</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="race" asp-action="Index">Races</a>
+        </li>
+        @if (User.Identity.IsAuthenticated)
+          {
+            <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+           </li>
+           <li class="nav-item">
+                    <a class="nav-link" style="color:#B84743" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+            </li>
+           }
+        else
+          {
+           <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+           </li>
+           <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+            </li>
+           }
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+    </header>
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Clubs - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

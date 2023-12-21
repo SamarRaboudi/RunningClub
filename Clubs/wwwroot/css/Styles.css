@@ -1,0 +1,56 @@
+﻿
+.navbar-title {
+    color: white !important;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right:40px;
+}
+
+
+    .navbar-title img {
+        margin-right: 10px;
+    }
+.section-background {
+    background: url('https://static.vecteezy.com/system/resources/previews/028/828/914/large_2x/runner-feet-running-on-a-stadium-closeup-on-feet-sports-background-space-for-copy-ai-generative-free-photo.jpg') center/cover no-repeat fixed;
+    color: #212529;  
+    padding: 50px; 
+    height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+}
+
+.section-content {
+    text-align: left;  
+    max-width:700px;
+    padding-left:50px;
+}
+    .section-content hr {
+        border: 0; 
+        height: 5px;  
+        background-color: #CEF400;  
+        margin-left: 50px;
+        width:150px;
+    }
+    .section-content h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+    }
+    .section-content p{
+        margin:20px 0;
+    }
+.bg-body-tertiary {
+    background-color: #f8f9fa;
+}
+
+.titleClub {
+    margin: 30px 0 60px;
+    font-weight: bold;
+    text-align: center;
+    color: #0c0c0c;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+

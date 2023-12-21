@@ -1,0 +1,155 @@
+﻿@using Clubs.Data.Enum
+@using Clubs.ViewModels
+
+@model EditClubViewModel
+
+<div style="  background-color: #F6F6ED";
+    background-size: cover;
+    background-position: center;">
+<div class="album py-5">
+    <div class="container">
+        <form method="post" asp-action="Edit" enctype="multipart/form-data"  class="form">
+             <input  type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId"/>
+            <div class="p-3 mt-4">
+                <div class="row pb-2">
+                    <input type="hidden" value="AddressId" id="AddressId" />
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Title">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="image-div mb-3">
+                         <label asp-for="Image" class="form-label">Image</label>
+                        <div class="image-container">
+                            <img id="previewImage" src="@Model.URL" alt="Selected Image" />
+                        </div>
+                        <div class="image-file">
+                            <input asp-for="Image" type="file" class="form-control" placeholder="Image" onchange="previewFile()">
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ClubCategory" class="form-label">Club Category</label>
+                        <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()" class="form-select">
+                            <option selected="selected" value="">--Select--</option>
+                        </select>
+                        <span asp-validation-for="ClubCategory" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address.Street" class="form-label">Street</label>
+                        <input asp-for="Address.Street" class="form-control" placeholder="Street">
+                        <span asp-validation-for="Address.Street" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address.City" class="form-label">City</label>
+                        <input asp-for="Address.City" class="form-control" placeholder="City">
+                        <span asp-validation-for="Address.Street" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address.State" class="form-label">State</label>
+                        <input asp-for="Address.State" class="form-control" placeholder="State">
+                        <span asp-validation-for="Address.State" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn edit-btn">Edit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+   function previewFile() {
+    var input = document.querySelector('input[type="file"]');
+    var preview = document.querySelector('#previewImage'); // Make sure the ID matches the one in your HTML
+    var file = input.files[0];
+
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = "";
+    }
+}
+
+</script>
+
+<style>
+   .form {
+        background-color: #fff; 
+        border-radius: 10px; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        padding: 20px; 
+        max-width:900px;
+        margin:0 auto;
+    }
+
+  .form .form-label {
+        color: #333; 
+        font-size: 16px; 
+        font-weight:bold;
+    }
+
+  .form .form-control {
+        border: 1px solid #ccc; 
+        border-radius: 6px; 
+        padding: 8px; 
+        margin-bottom: 10px; 
+    }
+
+    #previewImage {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+
+    .edit-btn {
+        color: #CEF400;
+        font-size: 1.2rem;
+        background-color: #0c0c0c;
+        width: 150px;
+        margin-top: 30px;
+        margin: 0 auto;
+        padding:10px 0;
+    }
+
+    .edit-btn:hover {
+        background-color: #0c0c0c;
+        color: #fff;
+ 
+    }
+
+    .image-div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-container {
+        width: 200px;
+        height: auto;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image-file {
+        display: flex;
+        flex-direction: column;
+    }
+</style>

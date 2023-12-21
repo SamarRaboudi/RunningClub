@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Club>
+
+<div style="  background-color: #F6F6ED";
+    background-size: cover;
+    background-position: center;">
+<div class="album py-5">
+    <div class="container">
+         <h1 class="title">RUNNING CLUBS</h1>
+    <p class="text-gray-50 sub_title">Find the best clubs for you and start the adventure!</p>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card cardClub" style="background-image: url('@item.Image'); height: 400px; background-size: cover; background-position: center;">
+                        <div class="card-body cardClub-body">
+                            <h3 class="card-title">@item.Title</h3>
+                            <p class="card-text">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="Club" asp-action="Detail" asp-route-id="@item.Id" class="btn yellow-btn my-2">View Details</a>
+                                       @* @if(User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                        {
+                                              <a asp-controller="Club" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                                        }  *@           
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+</div>
+
+<style>
+    .yellow-btn {  
+    border-width: 2px;
+    font-weight: 1.1rem;
+    color: #CEF400;
+    background-color: transparent;
+    border-color: #CEF400;
+}
+
+    .yellow-btn:hover {
+        border-width: 2px;
+        background-color: #0c0c0c;
+        border-color: #CEF400;
+        color: #CEF400;
+    }
+    .title{
+        font-weight:bold;
+        margin:20px 0 20px;
+        text-align:center;
+    }
+    .sub_title{
+        text-align:center;
+        font-size:1.3rem;
+        margin-bottom:70px;
+    }
+  .cardClub {
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+              0 2px 2px rgba(0,0,0,0.11), 
+              0 4px 4px rgba(0,0,0,0.11), 
+              0 6px 8px rgba(0,0,0,0.11),
+              0 8px 16px rgba(0,0,0,0.11);
+}
+
+.cardClub-body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 30px;
+    color:#fff;
+}
+.cardClub-body h3{
+    font-size:2rem;
+    font-weight:bold;
+}
+</style>
